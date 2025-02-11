@@ -20,8 +20,8 @@ jobs:
 
       - name: Run tests
         run: |
+          npm install
           npx playwright install --with-deps chromium
-          npm install nyc playwright-test-coverage
           npm run test:coverage
           - name: Update coverage
       - name: Update coverage
