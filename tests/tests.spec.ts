@@ -102,7 +102,6 @@ test('Create and delete a franchise and store', async ({ page }) => {
   const storeName = `New Store ${randomId()}`;
   await registerUser(page, franchiseeName, franchiseeEmail, franchiseePassword);
   await logout(page);
-  console.log('franchisee created');
   // create franchise
   await loginAsAdmin(page);
   await expect(page.getByRole('link', { name: 'Admin' })).toBeVisible();
@@ -118,7 +117,6 @@ test('Create and delete a franchise and store', async ({ page }) => {
   await page.waitForURL('/admin-dashboard');
   await expect(page.getByRole('cell', { name: franchiseName })).toBeVisible();
   await logout(page);
-  console.log('franchise created');
   // create store
   await loginAsUser(page, franchiseeEmail, franchiseePassword);
   await page.goto('/diner-dashboard');
@@ -130,13 +128,11 @@ test('Create and delete a franchise and store', async ({ page }) => {
   await page.getByRole('textbox', { name: 'store name' }).fill(storeName);
   await page.getByRole('button', { name: 'Create' }).click();
   await expect(page.locator('tbody')).toContainText(storeName);
-  console.log('store created');
   // close store
   await page.getByRole('button', { name: 'Close' }).click();
   await expect(page.getByRole('main')).toContainText(`Are you sure you want to close the ${franchiseName} store ${storeName} ? This cannot be restored. All outstanding revenue will not be refunded.`);
   await page.getByRole('button', { name: 'Close' }).click();
   await logout(page);
-  console.log('store closed');
   // close franchise
   await loginAsAdmin(page);
   await expect(page.getByRole('link', { name: 'Admin' })).toBeVisible();
@@ -147,7 +143,6 @@ test('Create and delete a franchise and store', async ({ page }) => {
   await page.getByRole('button', { name: 'Close' }).click();
   expect(await page.getByRole('table').innerText()).not.toContain(franchiseName);
   await logout(page);
-  console.log('franchise closed');
 });
 
 test('Redirect to login page', async ({ page }) => {
