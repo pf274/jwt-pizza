@@ -69,8 +69,8 @@ jobs:
     env:
       version: ${{needs.build.outputs.version}}
     environment:
-      name: production
-      url: https://pizza.myjwtpizza.click
+      name: staging
+      url: https://stage-pizza.myjwtpizza.click
     steps:
       - name: Create OIDC token to AWS
         uses: aws-actions/configure-aws-credentials@v4
