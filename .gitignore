@@ -13,3 +13,6 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 .nyc_output/
+
+.env.development
+.env.production
